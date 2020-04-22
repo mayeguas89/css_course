@@ -1,0 +1,121 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+/*
+Reset with the universal selector
+*/
+* {
+    margin: 0px;
+    padding: 0px;
+    /*
+        Cambia el modo para que el total-width o total-hight 
+        ocupe el ancho/alto que indicamos, no eso mas padding
+        mas margen
+    */
+    box-sizing: border-box;
+}
+
+/*
+Overall properties
+Fonts inheritance from body to children elements
+Text color
+*/
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #777;
+
+    padding: 30px;
+}
+
+.header {
+    /*
+    Every point should be 95% of height
+    */
+    height: 95vh;
+    /*
+    linear-gradient tiene parametros para dirigir el gradiente a direcciones
+    */
+    background-image: 
+        linear-gradient(
+            to right bottom, 
+            hsla(111, 55%, 64%, 0.8),
+            hsla(160, 64%, 43%, 0.8)), 
+        url(../img/hero.jpg);
+    /*
+    Whatever the width should fit in box  
+    */
+    background-size: cover;
+    background-position: top;
+    position: relative;
+
+    /*
+    used to hide some parts of elements and show other parts
+    Coordenadas de elementos que queremos estar visibles
+    */
+    clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
+}
+
+.logo-box {
+    position: absolute;
+    /*
+    La referencia esta en el parent element <header>
+    El parent es relativo
+    */
+    top: 40px;
+    left: 40px;
+}
+
+.logo {
+    /*
+    Si seteamos height width será puesta por el navegador
+    */
+    height: 35px;
+}
+
+/*
+Center box con absolute positioning
+*/
+.text-box {
+    position: absolute;
+    /*
+    Situamos la coordenada 0,0 de la caja en el medio del parent
+    */
+    top: 40%;
+    left: 50%;
+    /*
+    Trasladamos 50% de su propio ancho y alto para que el centro
+    de la caja este en el medio del parent
+    */
+    transform: translate(-50%, -50%);
+}
+
+.heading-primary {
+    color: #fff;
+    text-transform: uppercase;    
+}
+
+/*
+block elements ocupan todo el width y tienen salto de linea
+*/
+.heading-primary-main {
+    display: block;
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: 35px;
+}
+
+.heading-primary-sub {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 17.4px;
+}
