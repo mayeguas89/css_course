@@ -81,6 +81,10 @@ body {
     height: 35px;
 }
 
+/* .logo:hover {
+    animation: moveInLeft 1s ease-out;
+} */
+
 /*
 Center box con absolute positioning
 */
@@ -96,11 +100,19 @@ Center box con absolute positioning
     de la caja este en el medio del parent
     */
     transform: translate(-50%, -50%);
+
+    /* Dado que el anchor btn es un boton podemos centrarlo usando esta propiedad
+    en vez de tocar su posicion */
+    text-align: center;
 }
 
 .heading-primary {
     color: #fff;
     text-transform: uppercase;    
+
+    /* Para quitar el shaking de la animacion que es un bug*/
+    backface-visibility: hidden; 
+    margin-bottom: 60px;
 }
 
 /*
@@ -111,6 +123,15 @@ block elements ocupan todo el width y tienen salto de linea
     font-size: 60px;
     font-weight: 400;
     letter-spacing: 35px;
+    animation: moveInLeft 1s ease-out;
+
+    /*
+    animation-delay: 3s;
+    animation-iteration-count: 3;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    */
 }
 
 .heading-primary-sub {
@@ -118,4 +139,157 @@ block elements ocupan todo el width y tienen salto de linea
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 17.4px;
+
+    
+    animation: moveInRight 1s ease-out;
+    /*
+    animation-name: moveInRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    */
+}
+
+/* Animacion con KeyFrames */
+
+@keyframes moveInLeft {
+    /* Porcentajes de la animacion en el tiempo */
+
+    0% {
+        /* Al inicio que sean invisibles */
+        opacity: 0%;
+        /* Animacion en el eje x desde la izquierda */
+        transform: translateX(-100px);
+    }
+
+    /* 60% {
+        transform: rotate(180deg);
+    } */
+
+    80% {
+        transform: translateX(10px);
+    }
+
+    100% {
+        /* Al final que se vean */
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInRight {
+    /* Porcentajes de la animacion en el tiempo */
+
+    0% {
+        /* Al inicio que sean invisibles */
+        opacity: 0%;
+        /* Animacion en el eje x desde la izquierda */
+        transform: translateX(100px);
+    }
+
+    80% {
+        transform: translateX(-10px);
+    }
+
+    100% {
+        /* Al final que se vean */
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInBottom {
+    /* Porcentajes de la animacion en el tiempo */
+
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    100% {
+        /* Al final que se vean */
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Pseudo class link to style element under special condition*/
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+
+    display: inline-block;
+
+    /* Poniendo un numero grande en el border-radius redondea los bordes independiente del valor*/
+    border-radius: 100px;
+
+    /* Apply to all changed properties con la duracion*/
+    transition: all .2s;
+
+    /* posicion relativa para que el after se posicione respecto a este */
+    position: relative;
+}
+
+.btn:hover {
+    /* Los transform van referidos al estado no inicial no al anterior */
+    transform: translateY(-3px);
+
+    /* offset-x | offset-y | blur-radius | color con 20% de opacidad */
+    /* The larger this value, the bigger the blur, so the shadow becomes bigger and lighter */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+}
+
+.btn:active {
+    /* Los transform van referidos al estado no inicial no al anterior */
+    transform: translateY(-1px);
+
+    /* offset-x | offset-y | blur-radius | color con 20% de opacidad */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+
+.btn-white {
+    background-color: #fff;
+    color: #777;
+}
+
+/* after pseudo element añade un elemento "virtual" tras el elemento actual */
+/* La idea es poner un botón como el actual mayor y detrás del actual */
+.btn::after {
+    /* tiene que llevar el atributo content obligatorio aunque sea vacío*/
+    content: "";
+    /* El after actua como un child del actual */
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border-radius: 100px;
+
+    /* Posicion absoluta detras */
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    /* posicion de los elementos unos encima de otros */
+    z-index: -1;
+
+    /* hacer las transiciones del boton en .4s en lugar de instantaneas */
+    transition: all .4s;
+}
+
+.btn-white::after {
+    background-color: #fff;
+}
+
+/* After only when btn is hover */
+.btn:hover::after {
+    /* tranformamos en tamaño y fade con la opacidad */
+    transform: scaleX(1.5) scaleY(1.6);
+    opacity: 0;
+}
+
+
+.btn-animated {
+    animation: moveInBottom .5s .75s ease-out;
+
+    /* Aplica el 0% de la animacion al inicio no tras el delay */
+    animation-fill-mode: backwards;
 }
