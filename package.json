@@ -1,0 +1,22 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "Natours website",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "node-sass -w sass/main.scss css/style.css --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mayeguas89/css_course.git"
+  },
+  "author": "MAYV",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mayeguas89/css_course/issues"
+  },
+  "homepage": "https://github.com/mayeguas89/css_course#readme",
+  "dependencies": {
+    "node-sass": "^4.13.1"
+  }
+}
