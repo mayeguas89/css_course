@@ -1,0 +1,4 @@
+@function getWidthOfColumn($numberOfColumns, $totalColumns) {
+    $numberOfGutters: sum(#{$totalColumns}-#{$numberOfColumns});
+    @return calc($numberOfColumns*((100% - #{$numberOfGutters}*#{$gutter-horizontal}) / $totalColumns));
+}

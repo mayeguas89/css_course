@@ -1,0 +1,67 @@
+/* Animacion con KeyFrames */
+
+@keyframes moveInLeft {
+    /* Porcentajes de la animacion en el tiempo */
+
+    0% {
+        /* Al inicio que sean invisibles */
+        opacity: 0%;
+        /* Animacion en el eje x desde la izquierda */
+        /* transform: translateX(-100px); */
+        transform: translateX(-10rem);
+    }
+
+    /* 60% {
+        transform: rotate(180deg);
+    } */
+
+    80% {
+        /* transform: translateX(10px); */
+        transform: translateX(1rem);
+    }
+
+    100% {
+        /* Al final que se vean */
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInRight {
+    /* Porcentajes de la animacion en el tiempo */
+
+    0% {
+        /* Al inicio que sean invisibles */
+        opacity: 0%;
+        /* Animacion en el eje x desde la izquierda */
+        /* transform: translateX(100px);*/
+        transform: translateX(10rem);
+    }
+
+    80% {
+        /* transform: translateX(-10px); */
+        transform: translateX(-1rem);
+    }
+
+    100% {
+        /* Al final que se vean */
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInBottom {
+    /* Porcentajes de la animacion en el tiempo */
+
+    0% {
+        opacity: 0;
+        /* transform: translateY(100px); */
+        transform: translateY(10rem);
+    }
+
+    100% {
+        /* Al final que se vean */
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

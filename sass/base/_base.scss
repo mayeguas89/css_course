@@ -1,0 +1,40 @@
+/*
+Reset with the universal selector en todos los elemento,
+en todos los after y en todos los before
+*/
+*,
+*::after,
+*::before {
+    margin: 0px;
+    padding: 0px;
+
+    /* forzamos que todos los elementos hijos del selector universal
+    hereden la propiedad, que no es heredable por defecto */
+    box-sizing: inherit;
+}
+
+/* El rem va asociado al root element que es html: 1rem -> 10px*/
+html {
+    /* font-size: 10px; */
+    /* Dado que el default del browser el 16px, si ponemos a pelo la
+    fuente el user no es capaz de aumentar la fuente haciendo zoom,
+    por tanto lo suyo es usar el porcentaje de la fuente por defecto
+    10/16 = 0.625 */
+
+    // This defines what 1rem is
+    font-size: 62.5%;
+}
+
+/*
+Overall properties
+Fonts inheritance from body to children elements
+Text color
+*/
+body {
+    /*
+    Cambia el modo para que el total-width o total-hight 
+    ocupe el ancho/alto que indicamos, no eso mas padding
+    mas margen
+    */
+    box-sizing: border-box;
+}

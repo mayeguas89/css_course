@@ -1,0 +1,65 @@
+.header {
+    /*
+    Every point should be 95% of height
+    */
+    height: 95vh;
+    /*
+    linear-gradient tiene parametros para dirigir el gradiente a direcciones
+    */
+    background-image: 
+        linear-gradient(
+            to right bottom, 
+            rgba($color-green-light, 0.8),
+            rgba($color-green-dark, 0.8)), 
+        url(../img/hero.jpg);
+    /*
+    Whatever the width should fit in box  
+    */
+    background-size: cover;
+    background-position: top;
+    position: relative;
+
+    /*
+    used to hide some parts of elements and show other parts
+    Coordenadas de elementos que queremos estar visibles
+    */
+    clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
+
+    &__logo-box {
+        position: absolute;
+        /*
+        La referencia esta en el parent element <header>
+        El parent es relativo
+        */
+        /* top: 40px; */
+        top: 4rem;
+        /* left: 40px; */
+        left: 4rem;
+    }
+
+    &__logo {
+        /*
+        Si seteamos height width será puesta por el navegador
+        */
+        /* height: 35px; */
+        height: 3.5rem;
+    }
+
+    &__text-box {
+        position: absolute;
+        /*
+        Situamos la coordenada 0,0 de la caja en el medio del parent
+        */
+        top: 40%;
+        left: 50%;
+        /*
+        Trasladamos 50% de su propio ancho y alto para que el centro
+        de la caja este en el medio del parent
+        */
+        transform: translate(-50%, -50%);
+    
+        /* Dado que el anchor btn es un boton podemos centrarlo usando esta propiedad
+        en vez de tocar su posicion */
+        text-align: center;
+    }
+}
