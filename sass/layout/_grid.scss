@@ -1,9 +1,7 @@
-.row{
+.row {
     // Lo normal es tener rows de 1140px -> 114rem
     // Si tenemos menos espacio de 1140px se llenara todo completo
     max-width: $row-max-width;
-
-    background-color: #eee;
 
     // Center the row (center block element inside another block element)
     // Con auto en left y right el navegador calcula el mismo en ambos
@@ -20,13 +18,13 @@
     // Hay que hacer un clearfix para que no pierda alto el elemento
     @include clearfix;
 
-    // Col inside row
-    .col-1-of-2 {
-        // La funcion de css calc permite mezclar unidades
-        // Para usar una variable de sass dentro de la funcion
-        // de css hay que escribirla como #{$var}
-        width: calc((100% - #{$gutter-horizontal}) / 2);
-        background-color: orangered;
+    // Attribute selector: para seleccionar todos los elementos
+    // que tienen un atributo con un valor concreto
+    // Podemos usar regex para seleccionar todas las clases que empiezen
+    // por un valor ^= Todo lo que empiece con col-
+    // Tambien puedes usar *= para todo lo que contenga, $= para todo
+    // lo que acaba con
+    [class ^= "col-"] {
         float: left;
 
         &:not(:last-child) {
@@ -34,17 +32,34 @@
         }
     }
 
-    .col-1-of-3 {
+    // Col inside row
+    .col-1-of-2 {
         // La funcion de css calc permite mezclar unidades
         // Para usar una variable de sass dentro de la funcion
         // de css hay que escribirla como #{$var}
-        // width: calc((100% - 2*#{$gutter-horizontal}) / 3);
-        width: getWidthOfColumn(1, 3);
-        background-color: orangered;
-        float: left;
+        width: calc((100% - #{$gutter-horizontal}) / 2);
+        
+    }
 
-        &:not(:last-child) {
-            margin-right: $gutter-horizontal;
-        }
+    .col-1-of-3 {
+        width: calc((100% - 2*#{$gutter-horizontal}) / 3);
+    }
+
+    .col-1-of-4 {
+        width: calc((100% - 3*#{$gutter-horizontal}) / 4);
+    }
+
+    .col-2-of-3 {
+        // Tomamos el ancho de una columna y multiplicamos por el numero de columnas
+        // acumuladas mas el numero de gutter restantes
+        width: calc(2 * ((100% - 2*#{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
+    }
+
+    .col-2-of-4 {
+        width: calc(2 * ((100% - 3*#{$gutter-horizontal}) / 4) + #{$gutter-horizontal});
+    }
+
+    .col-3-of-4 {
+        width: calc(3 * ((100% - 3*#{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal});
     }
 }
