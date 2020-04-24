@@ -1,0 +1,21 @@
+.composition {
+
+    // Para poder posicionar de forma absoluta las fotos
+    // dentro de este div necesitan que el parent sea relative
+    position: relative;
+
+    &__photo {
+        
+        width: 55%;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .2);
+        border-radius: 2px;
+
+        position: absolute;
+
+        &--p1 {
+            left: 0;
+            top: -2rem;
+        }
+    }
+    
+}

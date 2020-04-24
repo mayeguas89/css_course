@@ -99,7 +99,7 @@
         color: $color-green;
         display: inline-block;
         border-bottom: 1px solid $color-green;
-        padding: 3px;
+        padding: 1rem;
 
         transition: all .5s;
     }
@@ -113,7 +113,7 @@
 
     &:active {
         /* Los transform van referidos al estado no inicial no al anterior */
-        transform: translateY(-.1rem);
+        transform: translateY(.1rem);
         
         /* offset-x | offset-y | blur-radius | color con 20% de opacidad */
         /* box-shadow: 0 5px 10px rgba(0, 0, 0, .2); */

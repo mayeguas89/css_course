@@ -137,7 +137,7 @@ body {
   color: transparent;
   transition: all .2s; }
   .heading-secondary:hover {
-    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    transform: skewY(1deg) skewX(15deg) scale(1.1);
     text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2); }
 
 .heading-terciary {
@@ -237,7 +237,7 @@ body {
   color: #55c57a;
   display: inline-block;
   border-bottom: 1px solid #55c57a;
-  padding: 3px;
+  padding: 1rem;
   transition: all .5s; }
 
 .btn-text:hover {
@@ -248,10 +248,21 @@ body {
 
 .btn-text:active {
   /* Los transform van referidos al estado no inicial no al anterior */
-  transform: translateY(-0.1rem);
+  transform: translateY(0.1rem);
   /* offset-x | offset-y | blur-radius | color con 20% de opacidad */
   /* box-shadow: 0 5px 10px rgba(0, 0, 0, .2); */
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+
+.composition {
+  position: relative; }
+  .composition__photo {
+    width: 55%;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    position: absolute; }
+    .composition__photo--p1 {
+      left: 0;
+      top: -2rem; }
 
 .row {
   max-width: 114rem;
