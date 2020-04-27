@@ -1,0 +1,45 @@
+.card {
+  // Para ver la parte de atras de la carta
+  // hay que poner un numero grande y setearlo
+  // para mozilla
+  // Para valores pequeños el efecto de la perspectiva se dramatiza
+  -moz-perspective: 150rem;
+  perspective: 150rem;
+
+  position: relative;
+
+  height: 50rem;
+
+  &__side {
+    font-size: 1.6rem;
+    height: 50rem;
+    transition: all 0.8s;
+    color: white;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    // hides the backpart of the element
+    backface-visibility: hidden;
+
+    &--front {
+      background-color: green;
+    }
+
+    &--back {
+      background-color: orangered;
+      transform: rotateY(180deg);
+    }
+  }
+
+  // When the card is hover select the card__side--front
+  &:hover &__side--front {
+    transform: rotateY(180deg);
+  }
+  // When the card is hover select the card__side--back
+  &:hover &__side--back {
+    transform: rotateY(0);
+  }
+}
