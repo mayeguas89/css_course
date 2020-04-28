@@ -9,11 +9,12 @@
   position: relative;
 
   height: 50rem;
+  
 
   &__side {
     font-size: 1.6rem;
     height: 50rem;
-    transition: all 0.8s;
+    transition: all 0.8s ease;
     color: white;
 
     position: absolute;
@@ -23,14 +24,33 @@
 
     // hides the backpart of the element
     backface-visibility: hidden;
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
 
     &--front {
-      background-color: green;
+      background-color: $color-white;
     }
 
     &--back {
-      background-color: orangered;
       transform: rotateY(180deg);
+      &-one {
+        background-image: linear-gradient(
+          to right bottom, 
+          $color-secondary-light,
+          $color-secondary-dark);
+      }
+      &-two {
+        background-image: linear-gradient(
+          to right bottom, 
+          $color-primary-light,
+          $color-primary-dark);
+      }
+      &-three {
+        background-image: linear-gradient(
+          to right bottom, 
+          $color-terciary-light,
+          $color-terciary-dark);
+      }
     }
   }
 
