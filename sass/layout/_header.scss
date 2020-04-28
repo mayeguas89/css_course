@@ -23,6 +23,7 @@
     used to hide some parts of elements and show other parts
     Coordenadas de elementos que queremos estar visibles
     */
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
   clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
 
   &__logo-box {
