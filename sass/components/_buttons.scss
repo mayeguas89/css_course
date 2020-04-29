@@ -57,6 +57,15 @@
     }
   }
 
+  &--green {
+    background-color: $color-primary-dark;
+    color: $color-white;
+
+    &::after {
+      background-color: $color-primary-dark;
+    }
+  }
+
   /* after pseudo element añade un elemento "virtual" tras el elemento actual */
   /* La idea es poner un botón como el actual mayor y detrás del actual */
   &::after {
