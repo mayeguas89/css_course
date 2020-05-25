@@ -1,0 +1,157 @@
+.navigation {
+    &__checkbox {
+        display: none;
+    }
+
+    &__checkbox:checked ~ &__nav {
+        width:100vw;
+        opacity: 1;
+    }
+
+    &__checkbox:checked ~ &__background {
+        transform: scale(80);
+    }
+
+    &__checkbox:checked + &__button &__icon {
+        background-color: transparent;
+    }
+
+    &__checkbox:checked + &__button &__icon::after {
+        // La rotacion se hace 180-45deg para que se vea mejor la transicion en un movimiento mas largo
+        // se corrige la posicion a top: 0 en luegar de usar translate en x e y
+        top: 0;
+        transform: rotate(135deg);
+    }
+    &__checkbox:checked + &__button &__icon::before {
+        // La rotacion se hace 180+45deg para que se vea mejor la transicion en un movimiento mas largo
+        // se corrige la posicion a top: 0 en luegar de usar translate en x e y
+        top: 0;
+        transform: rotate(225deg);
+    }
+    
+    &__background {
+        height: 6rem;
+        width: 6rem;
+        border-radius: 50%;
+        position: fixed;
+        top: 6.5rem;
+        right: 6.5rem;
+        background-image: radial-gradient($color-primary-light, $color-primary-dark);
+        z-index: 1000;
+
+        transition: transform .8s cubic-bezier(0.85, 0, 0.15, 1);
+    }
+    
+    &__button {
+        height: 7rem;
+        width: 7rem;
+        border-radius: 50%;
+        position: fixed;
+        top: 6rem;
+        right: 6rem;
+        background-color: $color-white;
+        z-index: 2000;
+        box-shadow: 0 1rem 3rem rgba($color-black, .2);
+        text-align: center;
+        cursor: pointer;
+    }
+
+    &__button:hover &__icon::before {
+        top: -1rem;
+    }
+    &__button:hover &__icon::after {
+        top: 1rem;
+    }
+
+    &__icon {
+        position: relative;
+        margin-top: 3.5rem;
+        &,
+        &::before,
+        &::after {
+            width: 3rem;
+            height: 2px;
+            background-color: $color-grey-dark-3;
+            display: inline-block;
+            transition: all .4s;
+        }
+
+        &::before ,
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+        }
+
+        &::before {
+            top: -.8rem;
+        }
+        &::after {
+            top: .8rem;
+        }
+    }
+
+    &__nav {
+        height: 100vh;
+        width: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        // Situaremos el nav entre el button y el background
+        z-index: 1500;
+        opacity: 0;
+
+        transition: all .8s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    }
+
+    &__list {
+        width: 100%;
+        @include centerHorAndVer;
+        text-align: center;
+        list-style: none;
+
+    }
+
+    &__item {
+        margin: 1rem;
+
+
+    }
+
+    &__link {
+
+        &:link,
+        &:visited {
+            display: inline-block;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 3rem;
+            font-weight: 300;
+            color: $color-white;
+            padding: 1rem 2rem;
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+            // Si hacemos el background-size 200% el background se hace el doble, sin embargo como está contenido dentro de un elemento con display: inlin-block se hace invisible
+            background-size: 230%;
+            transition: all .4s;
+
+            span {
+                margin-right: 1.5rem;
+                display: inline;
+            }
+        }
+
+        &:hover,
+        &:active {
+            // Dado que el background está desplazado a la derecha con background-size: 200%;
+            // Para traerlo a la izquierda volvemos a hacer la misma operacion a la inversa cambiando la posicion
+            background-position: 100%;
+
+            color: $color-primary;
+
+            transform: translateX(1rem);
+        }
+
+    }
+    
+
+}

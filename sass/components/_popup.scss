@@ -1,0 +1,95 @@
+.popup {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba($color-black, .8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 4000;
+
+    visibility: hidden;
+    opacity: 0;
+
+    transition: all .3s;
+
+    &:target {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:target &__content {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    &__close {
+        &:link,
+        &:visited {
+            color: $color-grey-dark-1;
+            // Dado que el parent de este elemento es &__right y no tiene definido un position, sigue hacia arriba en el DOM y usa el & como parent con posicionamiento relative(fixed)
+            position: absolute;
+            top: 2rem;
+            right: 3rem;
+            text-decoration: none;
+            font-size: 3rem;
+            line-height: 1;
+        }
+        &:hover {
+            color: $color-primary;
+        }
+    }
+
+    &__content {
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black, .2);
+        border-radius: 3px;
+        @include centerHorAndVer;
+        width: 75%;
+
+        // Para que los elementos children de este tengan la misma altura, hay que convertir el elemento en una tabla
+        // para ello usamos display: table
+        display: table;
+
+        // Debido a que la imagen sobrepasa el tamaño del parent en los bordes al haberlos recortado
+        // hay que usar overflow hidden para no mostrar el contenido que se sale del parent
+        overflow: hidden;
+
+        // El estado inicial antes de la animacion
+        transform: translate(-50%, -50%) scale(0);
+
+        transition: all .5s .2s;
+    }
+
+    &__left {
+        width: 33.33333333%;
+        // Este elemento es un hijo del elemento padre con display: table;
+        display: table-cell;
+    } 
+
+    &__right {
+        width: 66.66666667%;
+        // Este elemento es un hijo del elemento padre con display: table;
+        display: table-cell;
+        // Las celdas permiten alineacion vertical
+        vertical-align: middle;
+        padding: 3rem 5rem;
+    } 
+
+    &__img {
+        display: block;
+        width: 100%;
+    }
+
+    &__text {
+        font-size: 1.4rem;
+
+        column-count: 2;
+        column-gap: 4rem; // 1em = 14px ya que se refiere a la fuente del elemento que se ha seteado a 1.4rem
+        column-rule: 1px solid $color-grey-light-2;
+
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+    }
+}

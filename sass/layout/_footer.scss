@@ -55,10 +55,10 @@
     }
 
     &__copyright {
-        color: $color-grey-dark-1;
         border-top: 1px solid $color-grey-dark-2;
         padding: 2rem;
         // Para que la linea no llegue hasta el 100% de su ancho si no hasta el contenido usamos inline block
         display: inline-block;
+        width: 80%;
     }
 }
