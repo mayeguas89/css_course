@@ -5,31 +5,49 @@ en todos los after y en todos los before
 *,
 *::after,
 *::before {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 
-    /* forzamos que todos los elementos hijos del selector universal
+  /* forzamos que todos los elementos hijos del selector universal
     hereden la propiedad, que no es heredable por defecto */
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 /* El rem va asociado al root element que es html: 1rem -> 10px*/
 html {
-    /* font-size: 10px; */
-    /* Dado que el default del browser el 16px, si ponemos a pelo la
+  /* font-size: 10px; */
+  /* Dado que el default del browser el 16px, si ponemos a pelo la
     fuente el user no es capaz de aumentar la fuente haciendo zoom,
     por tanto lo suyo es usar el porcentaje de la fuente por defecto
-    10/16 = 0.625 */
+    10/16 = 0.625 
+    */
 
-    // This defines what 1rem is
-    font-size: 62.5%;
+  // This defines what 1rem is
+  font-size: 62.5%;
 
-    @include respond-phone {
-        font-size: 50%;
-    }
-    @include respond(phone) {
-        font-size: 50%;
-    }
+  @include respond(big-desktop) {
+    // 1rem => 12px, 12px/16px = .75
+    font-size: 75%;
+  }
+
+  // Para  que los media queries apliquen bien hay que ponerlos de mayor a menor cuando se usa max-width ya que el ultimo es el que se aplica cuando los queries dan todos OK.
+  // De forma que mientras que width sea menor que 600px aplicaran tab-land tab-port y phone, pero como el ultimo en aparecer es phone por lo que aplica su estilo
+  // Entre 600px y 900px aplica tab-land y tab-port, pero el ultimo en aparecer es tab-port por lo que se usa su estilo
+  // Si el width es menor que 900px pero mayor que 600px solo aplica tab-land
+  // Los queries con max-width aplican mientras que el width sea menor que el maximo establecido
+  // Los queries con min-width aplican mientras el width sea mayor que el minimo establecido
+  @include respond(tab-land) {
+    // 1rem => 9px, 9px/16px = .5625
+    font-size: 56.25%;
+  }
+  @include respond(tab-port) {
+    // 1rem => 8px, 8px/16px = .5
+    font-size: 50%;
+  }
+  @include respond(phone) {
+    // 1rem => 8px, 8px/16px = .5
+    font-size: 40%;
+  }
 }
 
 /*
@@ -38,10 +56,18 @@ Fonts inheritance from body to children elements
 Text color
 */
 body {
-    /*
+  /*
     Cambia el modo para que el total-width o total-hight 
     ocupe el ancho/alto que indicamos, no eso mas padding
     mas margen
     */
-    box-sizing: border-box;
+  box-sizing: border-box;
+
+  /* padding: 30px; */
+  padding: 1.6rem;
+
+  // IF width < 900px remove borders
+  @include respond(tab-port) {
+    padding: 0px;
+  }
 }

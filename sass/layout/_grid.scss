@@ -3,6 +3,10 @@
   // Si tenemos menos espacio de 1140px se llenara todo completo
   max-width: $row-max-width;
 
+  @include respond(tab-port) {
+    max-width: $row-max-width-small;
+  }
+
   // Center the row (center block element inside another block element)
   // Con auto en left y right el navegador calcula el mismo en ambos
   margin: 0 auto;
@@ -12,6 +16,9 @@
   &:not(:last-child) {
     // Espaciado por debajo en cada fila
     margin-bottom: $gutter-vertical;
+  }
+  @include respond(tab-port) {
+    margin-bottom: $gutter-vertical-small;
   }
 
   // Dado que usamos float en los elementos dentro de row
@@ -29,6 +36,21 @@
 
     &:not(:last-child) {
       margin-right: $gutter-horizontal;
+
+      @include respond(tab-port) {
+        margin-right: 0;
+        margin-bottom: $gutter-vertical-small;
+      }
+
+      @include respond(phone) {
+        margin-bottom: 4rem;
+      }
+    }
+
+    // En pantallas mas pequeñas hacemos la columna 100% de la pantalla y no dividimos en varias columnas cada fila
+
+    @include respond(tab-port) {
+      width: 100% !important;
     }
   }
 

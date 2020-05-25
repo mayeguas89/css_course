@@ -1,17 +1,17 @@
 @mixin clearfix {
-    &::after{
-        content: "";
-        display: table;
-        // Clear both funciona con ambos float: right y left
-        clear: both;
-    }
+  &::after {
+    content: "";
+    display: table;
+    // Clear both funciona con ambos float: right y left
+    clear: both;
+  }
 }
 
 @mixin centerHorAndVer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 // MEDIA QUERY MANAGER
@@ -28,12 +28,15 @@ Usage:
 @include respond-phone {
     font-size: 50%;
 }
+@include respond(phone) {
+    font-size: 50%;
+}
 */
 
 @mixin respond-phone {
-    @media (max-width: 600px) {
-        @content
-    };
+  @media (max-width: 600px) {
+    @content;
+  }
 }
 
 /*
@@ -42,11 +45,40 @@ $breakpoint arguments:
 - tab-port
 - tab-land
 - big-desktop
+
+En los mediaquerys los rem y em no estan afectados por el font-size del elemento html seteado en css, si no que van en relacion al default font-size del navegador 16px, salvo que lo modifique el usuario en su navegador.
+Em es lo mejor para mediaquery 1em = 16px
+ 
+600px / 16px = 37.5em
+900px / 16px = 56.25em
+1200px / 16px = 75em
+1800px / 16px = 112.5em
+
+ORDER:  Base, Typography, general layout, grid, page layout
 */
 @mixin respond($breakpoint) {
-    @if $breakpoint == phone {
-        @media (max-width: 600px) {
-            @content
-        };
-    };
+  @if $breakpoint == phone {
+    @media (max-width: 37.5em) {
+      // Is width < 600px ?
+      @content;
+    }
+  }
+  @if $breakpoint == tab-port {
+    @media (max-width: 56.25em) {
+      // Is width < 900px ?
+      @content;
+    }
+  }
+  @if $breakpoint == tab-land {
+    @media (max-width: 75em) {
+      // Is width < 1200px ?
+      @content;
+    }
+  }
+  @if $breakpoint == bid-desktop {
+    @media (min-width: 112.5rem) {
+      // Is width > 1800px ?
+      @content;
+    }
+  }
 }
